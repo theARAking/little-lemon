@@ -23,6 +23,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import com.example.littlelemon.ui.theme.LLPrimary1
+import com.example.littlelemon.ui.theme.LLSecondary4
 import com.example.littlelemon.ui.theme.LittleLemonTheme
 
 @Composable
@@ -32,6 +33,7 @@ fun Profile(
     firstName: State<String>?,
     lastName: State<String>?,
     email: State<String>?,
+    onUserDataChange: ((String, String, String) -> Unit)?,
     modifier: Modifier = Modifier
 ) {
     val context = LocalContext.current
@@ -51,6 +53,7 @@ fun Profile(
                             .align(Alignment.Center)
                     ) {
                         sharedPreferences?.edit()?.clear()?.commit()
+                        onUserDataChange?.invoke("", "", "")
 
                         Toast.makeText(context, "Successfully logged out.", Toast.LENGTH_SHORT).show()
                         navController?.navigate(Onboarding.route) {
@@ -86,76 +89,41 @@ fun Profile(
                 Column(modifier = Modifier.fillMaxWidth().padding(10.dp)) {
                     Text(
                         text = "First Name:",
-                        style = MaterialTheme.typography.labelSmall
+                        style = MaterialTheme.typography.labelSmall,
+                        color = LLSecondary4
                     )
                     Text(
                         text = firstName?.value ?: "",
-                        style = MaterialTheme.typography.labelSmall
+                        style = MaterialTheme.typography.labelSmall,
+                        color = LLSecondary4
                     )
                 }
 
                 Column(modifier = Modifier.fillMaxWidth().padding(10.dp)) {
                     Text(
                         text = "Last Name:",
-                        style = MaterialTheme.typography.labelSmall
+                        style = MaterialTheme.typography.labelSmall,
+                        color = LLSecondary4
                     )
                     Text(
                         text = lastName?.value ?: "",
-                        style = MaterialTheme.typography.labelSmall
+                        style = MaterialTheme.typography.labelSmall,
+                        color = LLSecondary4
                     )
                 }
 
                 Column(modifier = Modifier.fillMaxWidth().padding(10.dp)) {
                     Text(
                         text = "Email:",
-                        style = MaterialTheme.typography.labelSmall
+                        style = MaterialTheme.typography.labelSmall,
+                        color = LLSecondary4
                     )
                     Text(
                         text = email?.value ?: "",
-                        style = MaterialTheme.typography.labelSmall
+                        style = MaterialTheme.typography.labelSmall,
+                        color = LLSecondary4
                     )
                 }
-
-                /*
-                TextField(
-                    label = {
-                        Text(
-                            text = "First Name",
-                            style = MaterialTheme.typography.labelSmall
-                        )
-                    },
-                    value = firstNameField,
-                    onValueChange = { firstNameField = it },
-                    modifier = Modifier.padding(10.dp),
-                    enabled = false
-                )
-
-                TextField(
-                    label = {
-                        Text(
-                            text = "Last Name",
-                            style = MaterialTheme.typography.labelSmall
-                        )
-                    },
-                    value = lastNameField,
-                    onValueChange = { lastNameField = it },
-                    modifier = Modifier.padding(10.dp),
-                    enabled = false
-                )
-
-                TextField(
-                    label = {
-                        Text(
-                            text = "Email",
-                            style = MaterialTheme.typography.labelSmall
-                        )
-                    },
-                    value = emailField,
-                    onValueChange = { emailField = it },
-                    modifier = Modifier.padding(10.dp),
-                    enabled = false
-                )
-                 */
             }
         }
     }
@@ -170,7 +138,8 @@ fun ProfilePreview() {
             sharedPreferences = null,
             firstName = null,
             lastName = null,
-            email = null
+            email = null,
+            onUserDataChange = null
         )
     }
 }
