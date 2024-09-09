@@ -78,6 +78,7 @@ fun Home(
                         onValueChange = { searchPhrase = it },
                         placeholder = { Text(text = "Enter Search Phrase") },
                         leadingIcon = { Icon(imageVector = Icons.Default.Search, contentDescription = "") },
+                        singleLine = true,
                         modifier = Modifier
                             .fillMaxWidth()
                             .clip(RoundedCornerShape(16.dp))

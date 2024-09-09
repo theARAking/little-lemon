@@ -128,6 +128,7 @@ fun Onboarding(
                     },
                     value = firstNameField,
                     onValueChange = { firstNameField = it },
+                    singleLine = true,
                     modifier = Modifier.padding(10.dp)
                 )
 
@@ -141,6 +142,7 @@ fun Onboarding(
                     },
                     value = lastNameField,
                     onValueChange = { lastNameField = it },
+                    singleLine = true,
                     modifier = Modifier.padding(10.dp)
                 )
 
@@ -155,6 +157,7 @@ fun Onboarding(
                     value = emailField,
                     onValueChange = { emailField = it },
                     keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email),
+                    singleLine = true,
                     modifier = Modifier.padding(10.dp)
                 )
             }
