@@ -2,7 +2,6 @@ package com.example.littlelemon
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -11,15 +10,11 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.itemsIndexed
-import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonColors
 import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.Card
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -35,8 +30,6 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.focus.focusModifier
-import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
@@ -133,7 +126,8 @@ fun Home(
 fun CategoryFilters(
     menuItems: List<MenuItem>?,
     setCategoryFilter: (String) -> Unit,
-    getCategoryFilter: () -> String
+    getCategoryFilter: () -> String,
+    modifier: Modifier = Modifier
 ) {
     if (menuItems != null) {
         val categories: MutableSet<String> = mutableSetOf()
@@ -143,7 +137,7 @@ fun CategoryFilters(
 
         if (categories.size > 0) {
             LazyRow(
-                modifier = Modifier.padding(5.dp)
+                modifier = modifier.padding(5.dp)
             ) {
                 items(categories.toList()) { category ->
                     Button(
@@ -184,7 +178,7 @@ fun MenuItems(menuItems: List<MenuItem>?, modifier: Modifier = Modifier) {
     }
     else {
         LazyColumn( // Problem with Height
-            modifier = Modifier
+            modifier = modifier
                 .fillMaxHeight()
                 .padding(16.dp)
         ) {

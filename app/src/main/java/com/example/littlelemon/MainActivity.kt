@@ -2,7 +2,6 @@ package com.example.littlelemon
 
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener
 import android.os.Bundle
-import android.provider.Contacts.Intents.UI
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
