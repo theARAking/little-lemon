@@ -20,7 +20,7 @@ fun Navigation(
     updateMenuDatabase: () -> Job
 ) {
     val hasUserData = (firstName.value.isNotBlank() || lastName.value.isNotBlank() || email.value.isNotBlank())
-    val startDestination = if (hasUserData) Onboarding.route else Home.route
+    val startDestination = if (hasUserData) Home.route else Onboarding.route
     NavHost(navController = navController, startDestination = startDestination) {
         composable(Onboarding.route) {
             Onboarding(
