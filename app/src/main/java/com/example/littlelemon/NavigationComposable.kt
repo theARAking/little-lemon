@@ -6,20 +6,46 @@ import androidx.compose.runtime.State
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import kotlinx.coroutines.Job
 
 @Composable
-fun Navigation(navController: NavHostController, sharedPreferences: SharedPreferences, firstName: State<String>, lastName: State<String>, email: State<String>, onUserDataChange: (String, String, String) -> Unit) {
+fun Navigation(
+    navController: NavHostController,
+    sharedPreferences: SharedPreferences,
+    firstName: State<String>,
+    lastName: State<String>,
+    email: State<String>,
+    onUserDataChange: (String, String, String) -> Unit,
+    database: MenuDatabase,
+    updateMenuDatabase: () -> Job
+) {
     val hasUserData = (firstName.value.isNotBlank() || lastName.value.isNotBlank() || email.value.isNotBlank())
     val startDestination = if (hasUserData) Onboarding.route else Home.route
     NavHost(navController = navController, startDestination = startDestination) {
         composable(Onboarding.route) {
-            Onboarding(navController, firstName, lastName, email, onUserDataChange)
+            Onboarding(
+                navController = navController,
+                firstName = firstName,
+                lastName = lastName,
+                email = email,
+                onUserDataChange = onUserDataChange
+            )
         }
         composable(Home.route) {
-            Home(navController)
+            Home(
+                navController = navController,
+                database = database,
+                updateMenuDatabase = updateMenuDatabase
+            )
         }
         composable(Profile.route) {
-            Profile(navController, sharedPreferences, firstName, lastName, email)
+            Profile(
+                navController = navController,
+                sharedPreferences = sharedPreferences,
+                firstName = firstName,
+                lastName = lastName,
+                email = email
+            )
         }
     }
 }

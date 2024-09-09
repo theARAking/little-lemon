@@ -25,7 +25,14 @@ import com.example.littlelemon.ui.theme.LLPrimary1
 import com.example.littlelemon.ui.theme.LittleLemonTheme
 
 @Composable
-fun Profile(navController: NavHostController?, sharedPreferences: SharedPreferences?, firstName: State<String>?, lastName: State<String>?, email: State<String>?, modifier: Modifier = Modifier) {
+fun Profile(
+    navController: NavHostController?,
+    sharedPreferences: SharedPreferences?,
+    firstName: State<String>?,
+    lastName: State<String>?,
+    email: State<String>?,
+    modifier: Modifier = Modifier
+) {
     val context = LocalContext.current
 
     Scaffold(
@@ -50,7 +57,7 @@ fun Profile(navController: NavHostController?, sharedPreferences: SharedPreferen
                 }
             }
         },
-        modifier = Modifier.fillMaxSize()
+        modifier = modifier.fillMaxSize()
     ) { innerPadding ->
         Box(
             modifier = Modifier.padding(innerPadding)
@@ -152,6 +159,12 @@ fun Profile(navController: NavHostController?, sharedPreferences: SharedPreferen
 @Composable
 fun ProfilePreview() {
     LittleLemonTheme {
-        Profile(null, null, null, null, null)
+        Profile(
+            navController = null,
+            sharedPreferences = null,
+            firstName = null,
+            lastName = null,
+            email = null
+        )
     }
 }

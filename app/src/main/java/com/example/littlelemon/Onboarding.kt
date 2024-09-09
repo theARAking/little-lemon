@@ -33,7 +33,14 @@ import com.example.littlelemon.ui.theme.LLSecondary3
 import com.example.littlelemon.ui.theme.LittleLemonTheme
 
 @Composable
-fun Onboarding(navController: NavHostController?, firstName: State<String>?, lastName: State<String>?, email: State<String>?, onUserDataChange: ((String, String, String) -> Unit)?, modifier: Modifier = Modifier) {
+fun Onboarding(
+    navController: NavHostController?,
+    firstName: State<String>?,
+    lastName: State<String>?,
+    email: State<String>?,
+    onUserDataChange: ((String, String, String) -> Unit)?,
+    modifier: Modifier = Modifier
+) {
     val context = LocalContext.current
 
     var firstNameField by remember {
@@ -77,7 +84,7 @@ fun Onboarding(navController: NavHostController?, firstName: State<String>?, las
                 }
             }
         },
-        modifier = Modifier.fillMaxSize()
+        modifier = modifier.fillMaxSize()
     ) { innerPadding ->
         Box(
             modifier = Modifier.padding(innerPadding)
@@ -157,6 +164,12 @@ fun Onboarding(navController: NavHostController?, firstName: State<String>?, las
 @Composable
 fun OnboardingPreview() {
     LittleLemonTheme {
-        Onboarding(null, null, null, null, null)
+        Onboarding(
+            navController = null,
+            firstName = null,
+            lastName = null,
+            email = null,
+            onUserDataChange = null
+        )
     }
 }
