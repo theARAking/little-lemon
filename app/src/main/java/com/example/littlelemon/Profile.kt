@@ -20,6 +20,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import com.example.littlelemon.ui.theme.LLPrimary1
 import com.example.littlelemon.ui.theme.LittleLemonTheme
@@ -52,7 +53,12 @@ fun Profile(
                         sharedPreferences?.edit()?.clear()?.commit()
 
                         Toast.makeText(context, "Successfully logged out.", Toast.LENGTH_SHORT).show()
-                        navController?.navigate(Onboarding.route)
+                        navController?.navigate(Onboarding.route) {
+                            popUpTo(navController.graph.findStartDestination().id) {
+                                saveState = false
+                                inclusive = true
+                            }
+                        }
                     }
                 }
             }

@@ -11,7 +11,7 @@ import androidx.room.RoomDatabase
 
 @Entity
 data class MenuItem(
-    @PrimaryKey val id: Int,
+    @PrimaryKey(autoGenerate = false) val id: Int,
     val title: String,
     val description: String,
     val price: String,

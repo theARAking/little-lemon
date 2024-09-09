@@ -61,10 +61,12 @@ class MainActivity : ComponentActivity() {
             .get("https://raw.githubusercontent.com/Meta-Mobile-Developer-PC/Working-With-Data-API/main/menu.json")
             .body()
 
-        database.menuDao().clearMenuItems()
+        database.runInTransaction {
+            database.menuDao().clearMenuItems()
 
-        response.menu.forEach {
-            database.menuDao().saveMenuItem(it.toMenuItem())
+            response.menu.forEach {
+                database.menuDao().saveMenuItem(it.toMenuItem())
+            }
         }
     }
 
