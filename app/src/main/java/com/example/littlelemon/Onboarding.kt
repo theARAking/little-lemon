@@ -31,6 +31,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.example.littlelemon.ui.theme.LLPrimary1
 import com.example.littlelemon.ui.theme.LLSecondary3
+import com.example.littlelemon.ui.theme.LLSecondary4
 import com.example.littlelemon.ui.theme.LittleLemonTheme
 
 @Composable
@@ -68,15 +69,11 @@ fun Onboarding(
                             .padding(10.dp)
                             .align(Alignment.Center)
                     ) {
-                        val firstNameValue = firstNameField.toString()
-                        val lastNameValue = lastNameField.toString()
-                        val emailValue = emailField.toString()
-
-                        if (firstNameValue.isBlank() || lastNameValue.isBlank() || emailValue.isBlank()) {
+                        if (firstNameField.isBlank() || lastNameField.isBlank() || emailField.isBlank()) {
                             Toast.makeText(context, "Registration unsuccessful. Please enter all data.", Toast.LENGTH_SHORT).show()
                         }
                         else {
-                            onUserDataChange?.invoke(firstNameValue, lastNameValue, emailValue)
+                            onUserDataChange?.invoke(firstNameField, lastNameField, emailField)
 
                             Toast.makeText(context, "Registration successful!", Toast.LENGTH_SHORT).show()
                             navController?.navigate(Home.route)
@@ -125,7 +122,8 @@ fun Onboarding(
                     label = {
                         Text(
                             text = "First Name",
-                            style = MaterialTheme.typography.labelSmall
+                            style = MaterialTheme.typography.labelSmall,
+                            color = LLSecondary4
                         )
                     },
                     value = firstNameField,
@@ -137,7 +135,8 @@ fun Onboarding(
                     label = {
                         Text(
                             text = "Last Name",
-                            style = MaterialTheme.typography.labelSmall
+                            style = MaterialTheme.typography.labelSmall,
+                            color = LLSecondary4
                         )
                     },
                     value = lastNameField,
@@ -149,7 +148,8 @@ fun Onboarding(
                     label = {
                         Text(
                             text = "Email",
-                            style = MaterialTheme.typography.labelSmall
+                            style = MaterialTheme.typography.labelSmall,
+                            color = LLSecondary4
                         )
                     },
                     value = emailField,

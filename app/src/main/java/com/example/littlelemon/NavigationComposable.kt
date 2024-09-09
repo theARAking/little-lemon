@@ -44,7 +44,8 @@ fun Navigation(
                 sharedPreferences = sharedPreferences,
                 firstName = firstName,
                 lastName = lastName,
-                email = email
+                email = email,
+                onUserDataChange = onUserDataChange
             )
         }
     }
